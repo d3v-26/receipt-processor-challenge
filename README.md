@@ -170,3 +170,25 @@ the reviewing engineer.
 ### How long do I have to complete the exercise?
 There is no time limit for the exercise. Out of respect for your time, we designed this exercise with the intent that it should take you a few hours. But, please
 take as much time as you need to complete the work.
+
+---
+
+# Instructions
+
+### Clone the repository
+  ```bash
+  git clone https://github.com/your-repo/receipt-processor.git
+  ``` 
+### Run the server
+  ```bash
+  npm install
+  npm start
+  ```
+  OR
+  ```bash
+  docker compose up --build
+  ```
+### Test the server
+  ```bash
+  npm test
+  ```
