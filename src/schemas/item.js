@@ -13,6 +13,7 @@ const validateItem = (item) => {
     const descriptionRegex = /^[\w\s\-]+$/;
     const priceRegex = /^\d+\.\d{2}$/;
 
+    // Return true if the item is valid, false otherwise
     return (
         item &&
         typeof item.shortDescription === 'string' &&

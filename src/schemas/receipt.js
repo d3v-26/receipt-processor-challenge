@@ -44,6 +44,7 @@ const validateReceipt = (receipt) => {
         if (isNaN(date.getTime())) return false;
     }
 
+    // Return true if the receipt is valid, false otherwise
     return isValid;
 };
 

@@ -1,20 +1,33 @@
-const express = require('express');
-const router = express.Router();
-const { validateReceiptMiddleware } = require('../middleware/validateReceipt');
-const { v4: uuidv4 } = require('uuid'); 
-const { calculatePoints } = require('../utils/calculatePoints');
+const express = require('express'); // Express
+const { v4: uuidv4 } = require('uuid'); // Generate unique IDs
+const { calculatePoints } = require('../utils/calculatePoints'); // Calculate points
+const { validateReceiptMiddleware } = require('../middleware/validateReceipt'); // Validate receipt
 
+// Router
+const router = express.Router();
+// In-memory storage (replace with a database in production)
 const receiptsStore = new Map();
 
-
+/**
+ * @route GET /
+ * @description Welcome message
+ */
 router.get('/', (req, res) => {
   res.json({ message: 'Welcome to the Receipt Processor web service!' });
 });
 
+/**
+ * @route GET /health
+ * @description Health check
+ */
 router.get('/health', (req, res) => {
   res.json({ status: 'OK' });
 });
 
+/**
+ * @route POST /receipts/process
+ * @description Process a receipt and return an ID
+ */
 router.post('/receipts/process', validateReceiptMiddleware, (req, res) => {
     try {
         // Generate a unique ID
@@ -39,9 +52,10 @@ router.post('/receipts/process', validateReceiptMiddleware, (req, res) => {
  * @description Get points for a specific receipt
  */
 router.get('/receipts/:id/points', (req, res) => {
-    const { id } = req.params;
-    const receiptData = receiptsStore.get(id);
+    const { id } = req.params; // Get the ID from the request parameters
+    const receiptData = receiptsStore.get(id); // Get the receipt data from the store
 
+    // If the receipt data is not found, return a 404 error
     if (!receiptData) {
         return res.status(404).json({ error: 'No receipt found for that id' });
     }
@@ -52,6 +66,7 @@ router.get('/receipts/:id/points', (req, res) => {
         receiptsStore.set(id, receiptData);
     }
 
+    // Return the points as per API spec
     res.json({ points: receiptData.points });
 });
 
