@@ -177,7 +177,7 @@ take as much time as you need to complete the work.
 
 ### Clone the repository
   ```bash
-  git clone https://github.com/your-repo/receipt-processor.git
+  git clone https://github.com/d3v-26/receipt-processor-challenge.git
   ``` 
 ### Run the server
   ```bash
