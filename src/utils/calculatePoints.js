@@ -19,7 +19,7 @@ function calculatePoints(receipt) {
     if (totalAsFloat % 0.25 === 0) {
         points += 25;
     }
-
+    
     // 4. 5 points for every two items
     points += Math.floor(receipt.items.length / 2) * 5;
 
