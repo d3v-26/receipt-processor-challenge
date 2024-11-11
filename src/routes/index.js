@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { validateReceiptMiddleware } = require('../middleware/validateReceipt');
 const { v4: uuidv4 } = require('uuid'); 
+const { calculatePoints } = require('../utils/calculatePoints');
 
 const receiptsStore = new Map();
 
